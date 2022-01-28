@@ -1,0 +1,28 @@
+version: "3"
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest-ubuntu
+    ports:
+      - 3000:3000
+    networks:
+      - grafana
+    expose:
+      - "80"
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      # - /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
+      # - /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
+      # - /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
+    ports:
+      - 80:80
+      - 443:443
+    links:
+     - grafana
+    networks:
+      - grafana
+networks:
+  grafana:
