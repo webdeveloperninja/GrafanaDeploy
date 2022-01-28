@@ -43,19 +43,19 @@ docker-compose up --force-recreate -d grafana
 docker-compose up --force-recreate -d nginx
 echo
 
-# echo "### Deleting dummy certificate for $domains ..."
-# docker-compose run --rm --entrypoint "\
-#   rm -Rf /etc/letsencrypt/live/$domains && \
-#   rm -Rf /etc/letsencrypt/archive/$domains && \
-#   rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
-# echo
+echo "### Deleting dummy certificate for $domains ..."
+docker-compose run --rm --entrypoint "\
+  rm -Rf /etc/letsencrypt/live/$domains && \
+  rm -Rf /etc/letsencrypt/archive/$domains && \
+  rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
+echo
 
-# echo "### Requesting Let's Encrypt certificate for $domains ..."
-# #Join $domains to -d args
-# domain_args=""
-# for domain in "${domains[@]}"; do
-#   domain_args="$domain_args -d $domain"
-# done
+echo "### Requesting Let's Encrypt certificate for $domains ..."
+#Join $domains to -d args
+domain_args=""
+for domain in "${domains[@]}"; do
+  domain_args="$domain_args -d $domain"
+done
 
 # # Select appropriate email arg
 # case "$email" in
