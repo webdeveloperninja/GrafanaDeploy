@@ -3,12 +3,6 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana:latest-ubuntu
-    ports:
-      - 3000:3000
-    networks:
-      - grafana
-    expose:
-      - "80"
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -22,7 +16,3 @@ services:
       - 443:443
     links:
      - grafana
-    networks:
-      - grafana
-networks:
-  grafana:
