@@ -3,8 +3,6 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana:latest-ubuntu
-    volumes:
-      - ./data/grafana:/var/lib/grafana
   nginx:
     image: nginx:latest
     container_name: nginx
